@@ -1,0 +1,130 @@
+
+<div class="serach-box" fxLayout="row">
+  <div fxLayoutGap="10px">
+
+    <mat-form-field>
+      <mat-label>ジャンル</mat-label>
+      <input matInput type="text" [(ngModel)]="bookGenre" [formControl]="myControl" [matAutocomplete]="auto">
+      <mat-autocomplete #auto="matAutocomplete" [displayWith]="displayFn">
+        <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+          {{option.name}}
+        </mat-option>
+      </mat-autocomplete>
+      <button mat-button *ngIf="bookGenre" matSuffix mat-icon-button aria-label="Clear" (click)="bookGenre=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>タイトル</mat-label>
+      <input matInput type="text" [(ngModel)]="bookName">
+      <button mat-button *ngIf="bookName" matSuffix mat-icon-button aria-label="Clear" (click)="bookName=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>著者</mat-label>
+      <input matInput type="text" [(ngModel)]="bookAuthor">
+      <button mat-button *ngIf="bookAuthor" matSuffix mat-icon-button aria-label="Clear" (click)="bookAuthor=''">
+        <mat-icon>close</mat-icon>
+      </button>
+    </mat-form-field>
+  </div>
+  <div>
+    <mat-icon mat-stroked-button (change)="$event" class="search" (click)="btnSearchOnClick()">
+      search 検索
+    </mat-icon>
+    <mat-icon mat-stroked-button class="search" (click)="btnNewClick()">
+      add_box 新規登録
+    </mat-icon>
+  </div>
+</div>
+<div class="example-container mat-elevation-z8">
+  <table class="table-layout" mat-table [dataSource]="dataSources" matSort>
+    <ng-container matColumnDef="edit">
+      <th mat-header-cell class="edit-header-cell" *matHeaderCellDef>Edit</th>
+      <td mat-cell class="edit-cell" (click)="iconEditOnClick(element)" *matCellDef="let element">
+        <mat-icon fxLayoutAlign="center center" color="accent">description</mat-icon>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="del">
+      <th mat-header-cell class="edit-header-cell" *matHeaderCellDef>Del</th>
+      <td mat-cell class="edit-cell" (click)="deleteBtnOnClick(element)" *matCellDef="let element">
+        <mat-icon fxLayoutAlign="center center" color="primary">delete</mat-icon>
+      </td>
+    </ng-container>
+    <ng-container matColumnDef="checkBox">
+      <div>
+        <th mat-header-cell class="edit-header-cell" *matHeaderCellDef>check</th>
+        <td mat-cell class="edit-cell" *matCellDef="let element" >
+          <mat-checkbox class="example-margin" (click)="checkBtnOnClick(element)" (change)="$event ? selection.toggle(element) : null"  [checked]="element.bookCheck">
+          </mat-checkbox>
+        </td>
+      </div>
+    </ng-container>
+    <!-- (click)="picterBtnOnClick(element)"  *ngFor = let item of dataSorce-->
+    <ng-container matColumnDef="bookpicter">
+      <th mat-header-cell class="edit-header-cell" *matHeaderCellDef>画像挿入</th>
+      <td mat-cell class="edit-cell" *matCellDef="let element">
+        <div >
+        <input type="file" style="display: none" #fileInput accept="image/*" (change)="onChangeFileInput()" >
+        <button mat-raised-button class="file-select-button" (click)="onClickFileInputButton(element)" >
+          <mat-icon>attach_file</mat-icon>
+          ファイルを選択
+        </button> 
+        <button mat-raised-button (click)="picterBtnOnClick(element)"   >   
+          <mat-icon>attach_file</mat-icon>
+          登録
+        </button>
+        <p class="file-name" *ngIf="!file; else fileName" >ファイルが選択されていません</p>
+        <ng-template #fileName>
+          <p class="file-name">{{ file?.name }}</p>
+        </ng-template>
+        <img  [src]="imgSrc" alt="">
+        </div>
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="bookId">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ID </th>
+      <td mat-cell *matCellDef="let element">{{element.bookId}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookName">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> タイトル </th>
+      <td mat-cell *matCellDef="let element">{{element.bookName}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookNo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 巻数 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookNo}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookAuthor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 著者 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookAuthor}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookPublisher">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 出版社 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookPublisher}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookGenre">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> ジャンル </th>
+      <td mat-cell *matCellDef="let element">{{element.bookGenre}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookRelease">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 発売日 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookRelease}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookBuy">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 購入日 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookBuy}}</td>
+    </ng-container>
+    <ng-container matColumnDef="bookPosition">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header> 位置 </th>
+      <td mat-cell *matCellDef="let element">{{element.bookPosition}}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayCols"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayCols;" (click)="selection.toggle(row)"></tr>
+  </table>
+  <mat-paginator [length]="100" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]">
+  </mat-paginator>

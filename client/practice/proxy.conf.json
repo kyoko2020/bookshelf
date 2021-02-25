@@ -1,0 +1,6 @@
+{
+  "/practice": {
+    "target": "http://localhost:8080/practice",
+    "pathRewrite": {"^/practice": ""}
+  }
+}

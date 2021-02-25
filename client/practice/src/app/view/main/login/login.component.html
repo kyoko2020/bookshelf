@@ -1,0 +1,24 @@
+<div class="main">
+  <div fxLayout="column" fxLayoutAlign="center center" >
+    <div class="frame">
+      <div fxLayout="column" fxLayoutAlign="center center">
+        <mat-form-field>
+          <input matInput type="text" placeholder="bookId" autocomplete="off" [(ngModel)]="bookId" required >
+        </mat-form-field>
+        <div class="example-container">
+        <mat-form-field >
+          <input matInput type="text" placeholder="パスワード" autocomplete="off" [(ngModel)]="bookNo" required [type]="hide ? 'password' : 'text'">
+          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+            <mat-icon style="color: rgb(235, 104, 130);">{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+        </mat-form-field>
+        </div>
+        <div fxLayoutAlign="center center">
+          <button mat-stroked-button class="login-button" (click)="loginClick()">
+            ログイン
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

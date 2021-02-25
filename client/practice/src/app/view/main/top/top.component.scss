@@ -1,0 +1,24 @@
+
+
+.position{
+// position: relative; /* 今の位置を基準 */
+top: 50px; /* 上から10px */
+left: 50px; /* 左から20px */
+}
+
+.menu-btn{
+    margin-top: 3ex;
+    margin-right: 10px;
+    width: 150px;
+    border-radius: 20px;
+    color: #ffffff;
+    background-color: rgb(137, 178, 253);
+}
+
+h3{
+  padding: 0 0 0 20px;
+    // border-bottom: solid 7px #e477ff;
+    font-size: 30px;
+    line-height: 1.4;
+    color:#7700ff;/*見出しタグの色を「赤色」に調整する*/
+}

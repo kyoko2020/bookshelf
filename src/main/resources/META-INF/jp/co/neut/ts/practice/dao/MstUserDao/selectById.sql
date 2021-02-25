@@ -1,0 +1,3 @@
+SELECT *
+FROM MST_BOOK
+WHERE BOOK_ID = /*bookId*/'0'

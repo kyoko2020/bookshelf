@@ -1,0 +1,53 @@
+<div class="popup-style">
+  <header fxLayoutAlign="start end">User Edit</header>
+  <section class="sec-area" fxLayout="column">
+    <div fxLayout="column" fxLayoutGap="10px">
+      <mat-form-field>
+        <mat-label>book Id</mat-label>
+        <input matInput [disabled]="isEdit" type="text" [(ngModel)]="editItem.bookId">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>タイトル</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookName">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>巻数</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookNo">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>著者</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookAuthor">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>出版社</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookPublisher">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>ジャンル</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookGenre">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>発売日</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookRelease">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>購入日</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookBuy">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>位置</mat-label>
+        <input matInput type="text" [(ngModel)]="editItem.bookPosition">
+      </mat-form-field>
+    </div>
+   
+    <div fxLayout="row" fxLayoutGap="10px" fxLayoutAlign="end end">
+      <!-- <button class="btn btn-danger" (click)="delete(editItem); $event.stopPropagation()">削除</button> -->
+      <button mat-stroked-button (click)="registerBtnOnClick()">
+        登録
+      </button>
+      <button mat-stroked-button (click)="cancelBtnOnClick()">
+        キャンセル
+      </button>
+    </div>
+  </section>
+</div>

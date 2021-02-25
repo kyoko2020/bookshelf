@@ -1,0 +1,49 @@
+.table-layout {
+  width: 100%;
+  padding: 5px;
+}
+
+.serach-box {
+  padding: 5px;
+}
+
+.edit-cell {
+  cursor: pointer;
+}
+
+.edit-header-cell {
+  width: 50px;
+}
+
+.serach-box u {
+  color: aqua;
+}
+
+.search{
+  margin-top: 1.5ex;
+  margin-right: 5px;
+  margin-left: 20px;
+  width: 90px;
+  border-radius: 15px;
+  color: rgb(131, 182, 250);
+  font-size: 20px;
+}
+.example-container {
+  max-width: 100%;
+  overflow: auto;
+}
+th.mat-sort-header-sorted {
+  color: black;
+}
+.example-form {
+  min-width: 150px;
+  max-width: 500px;
+  width: 100%;
+}
+.example-full-width {
+  width: 100%;
+}
+
+.example-margin {
+  margin: 0 12px;
+}

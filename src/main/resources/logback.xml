@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true">
+    <include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<include resource="org/springframework/boot/logging/logback/console-appender.xml" />
+	<!-- <include resource="org/springframework/boot/logging/logback/file-appender.xml" />-->
+
+    <!-- ここに追加したい設定を記述 -->
+    <logger name="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+        <level value="debug" />
+    </logger>
+
+    <logger name="org.springframework.web.servlet.handler.BeanNameUrlHandlerMapping" level="info"/>
+    <logger name="org.springframework.web.context.support.StandardServletEnvironment" level="info"/>
+
+    <property name="LOG_FILE" value="logs/practice"/>
+    <property name="AC_FILE" value="logs/practice_accessLog"/>
+	<property name="E_FILE" value="logs/practice_error"/>
+
+    <!-- <logger name="org.seasar.doma.jdbc.UtilLoggingJdbcLogger" level="OFF"/> -->
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<encoder>
+			<pattern>${FILE_LOG_PATTERN}</pattern>
+		</encoder>
+		<file>${LOG_FILE}.log</file>
+	    <rollingPolicy class="jp.co.neut.framework.logback.rolling.FLJDailyBaseMonthArchiveTriggerPolicy">
+	        <fileNamePattern>${LOG_FILE}_%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <archivePattern>${LOG_FILE}_%d{yyyy-MM}*.log</archivePattern>
+	        <monthZipFileName>${LOG_FILE}_%d{yyyy-MM}.log.zip</monthZipFileName>
+	        <monthHistory>2</monthHistory>
+	    </rollingPolicy>
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <level>INFO</level>
+        </filter>
+	</appender>
+
+	<appender name="ACLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>${AC_FILE}.log</file>
+	    <rollingPolicy class="jp.co.neut.framework.logback.rolling.FLJDailyBaseMonthArchiveTriggerPolicy">
+	        <fileNamePattern>${AC_FILE}_%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <archivePattern>${AC_FILE}_%d{yyyy-MM}*.log</archivePattern>
+	        <monthZipFileName>${AC_FILE}_%d{yyyy-MM}.log.zip</monthZipFileName>
+	        <monthHistory>2</monthHistory>
+	    </rollingPolicy>
+	    <encoder>
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %m%n</pattern>
+	    </encoder>
+	</appender>
+    <appender name="F_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${E_FILE}.log</file>
+	    <rollingPolicy class="jp.co.neut.framework.logback.rolling.FLJDailyBaseMonthArchiveTriggerPolicy">
+	        <fileNamePattern>${E_FILE}_%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <archivePattern>${E_FILE}_%d{yyyy-MM}*.log</archivePattern>
+	        <monthZipFileName>${E_FILE}_%d{yyyy-MM}.log.zip</monthZipFileName>
+	        <monthHistory>3</monthHistory>
+	    </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%level] %logger %replace(%message){'\n', '\\n'} %replace(%xException){'\n', '\\n'}%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+<!--
+	<appender name="ACLOG" class="ch.qos.logback.core.rolling.RollingFileAppender">
+	    <file>logs/braustar_accessLog.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <fileNamePattern>logs/braustar_accessLog_%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <maxHistory>180</maxHistory>
+	    </rollingPolicy>
+	    <encoder>
+	        <pattern>%d{yyyy-MM-dd HH:mm:ss.SSS} - %m%n</pattern>
+	    </encoder>
+	</appender>
+-->
+<!--
+    <appender name="F_ERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>logs/braustar_error.log</file>
+	    <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+	        <fileNamePattern>logs/braustar_error_%d{yyyy-MM-dd}.log</fileNamePattern>
+	        <maxHistory>180</maxHistory>
+	    </rollingPolicy>
+        <encoder>
+            <pattern>%date{yyyy-MM-dd HH:mm:ss.SSS} [%level] %logger %replace(%message){'\n', '\\n'} %replace(%xException){'\n', '\\n'}%n</pattern>
+        </encoder>
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+ -->
+	<logger name="jp.co.neut.practice.service" level="info">
+	    <appender-ref ref="ACLOG" />
+	</logger>
+
+    <root level="info">
+        <appender-ref ref="CONSOLE" />
+        <appender-ref ref="FILE" />
+        <appender-ref ref="F_ERROR" />
+    </root>
+
+</configuration>

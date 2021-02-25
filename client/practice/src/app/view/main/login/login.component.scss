@@ -1,0 +1,28 @@
+.example-container .mat-form-field + .mat-form-field {
+    margin-left: 8px;
+  }
+  
+  .example-right-align {
+    text-align: right;
+  }
+  
+  input.example-right-align::-webkit-outer-spin-button,
+  input.example-right-align::-webkit-inner-spin-button {
+    display: none;
+  }
+
+  .frame{
+    padding: 30px; 
+    margin-bottom:20px;
+    margin-top: 60px;
+    border: 1px solid #b75feb; 
+    border-radius: 30px; 
+    background-color: #F5F5DC;
+  }
+
+  .login-button{
+    margin-top: 30px;
+    color: #ffffff;
+    background-color: #c892fa;
+  }
+  

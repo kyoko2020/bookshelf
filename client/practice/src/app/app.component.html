@@ -1,0 +1,21 @@
+<div class="title-bar" fxLayout="column">
+  <div fxLayout="row" fxLayoutAlign="space-between center" class="title-bar-content">
+    <button mat-stroked-button class="top-btn" routerLink="/top" font face="Times New Roman">BOOK SHELF</button>
+
+    <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="end center">
+    <span class="user-icon">
+    <!-- <mat-icon *ngIf="authService.userInfo">account_circle</mat-icon> -->
+    <mat-icon *ngIf="">account_circle</mat-icon>
+    </span>
+       <!-- ログアウトボタン -->
+    <button mat-stroked-button class="top-btn" font face="Times New Roman" (click)="logoutbtnclick()">
+    <mat-icon>exit_to_app</mat-icon></button>
+    <!-- <div fxLayoutGap="10px" fxLayout="row" fxLayoutAlign="end center">
+      <mat-icon class="icon-size icon-btn">menu</mat-icon>
+    </div> -->
+    </div>
+  </div>
+</div>
+
+
+<router-outlet></router-outlet>

@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<!--
+   The following keys are set to the initial start-up of FLJServlet.
+    webapp
+    WEB-INF
+    catalina.home
+    java.home
+    classes
+
+   It can develop to a value by ${key}.
+-->
+<comment>Path Config Properties</comment>
+<entry key="META-INF">${webapp}META-INF</entry>
+<entry key="temp">${META-INF}/temp</entry>
+<entry key="template">${META-INF}/template</entry>
+</properties>

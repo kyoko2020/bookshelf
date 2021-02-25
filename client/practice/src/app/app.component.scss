@@ -1,0 +1,39 @@
+
+.title-bar {
+  height: 40px;
+  background-color: #957132;
+}
+
+.title-bar-content {
+  height: 100%;
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.icon-size {
+  height: 32px;
+  width: 32px;
+  font-size: 32px;
+}
+
+.icon-btn {
+  cursor: pointer;
+  color: white;
+}
+
+.top-btn {
+  height: 100%;
+  border: none;
+  color: #FFF;
+  font-size: 20px;
+  padding: 5px;
+}
+    // ログアウトボタンを右寄せにする
+ .right-icon {
+  // margin: 0 0 0 auto;
+  color: #FFF;
+ }
+ .user-icon{
+  color: #FFF;
+  
+ }
